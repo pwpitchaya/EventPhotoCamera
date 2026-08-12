@@ -1,0 +1,24 @@
+{
+  "expo": {
+    "name": "Event Photo Camera",
+    "slug": "event-photo-camera",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "resizeMode": "contain",
+      "backgroundColor": "#101828"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSCameraUsageDescription": "Use the camera to take an event photo.",
+        "NSPhotoLibraryUsageDescription": "Use the photo library to choose an event photo."
+      }
+    },
+    "android": {
+      "permissions": ["CAMERA", "READ_MEDIA_IMAGES", "READ_EXTERNAL_STORAGE"]
+    },
+    "plugins": ["expo-font"]
+  }
+}

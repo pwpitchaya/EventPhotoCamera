@@ -168,6 +168,14 @@ export default function App() {
         </View>
       </ScrollView>
 
+      <View style={styles.bottomNav}>
+        <Pressable style={styles.navItem} accessibilityRole="button"><Ionicons name="camera" size={21} color="#B9A7FF" /><Text style={styles.navLabelActive}>Create</Text></Pressable>
+        <Pressable style={styles.navItem} accessibilityRole="button"><Ionicons name="images-outline" size={21} color="#98A2B3" /><Text style={styles.navLabel}>Library</Text></Pressable>
+        <Pressable style={styles.navAddButton} onPress={openAddPhotoSheet} accessibilityLabel="à¹€à¸žà¸´à¹ˆà¸¡à¸£à¸¹à¸›"><Ionicons name="add" size={27} color="#fff" /></Pressable>
+        <Pressable style={styles.navItem} accessibilityRole="button"><Ionicons name="sparkles-outline" size={21} color="#98A2B3" /><Text style={styles.navLabel}>Styles</Text></Pressable>
+        <Pressable style={styles.navItem} accessibilityRole="button"><Ionicons name="person-outline" size={21} color="#98A2B3" /><Text style={styles.navLabel}>Profile</Text></Pressable>
+      </View>
+
       <Modal visible={cameraOpen} animationType="slide" onRequestClose={() => setCameraOpen(false)}>
         <View style={styles.cameraScreen}><CameraView ref={cameraRef} style={styles.camera} facing="back"><FilterOverlay filter={filter} /><View style={styles.cameraControls}><Pressable accessibilityLabel="ปิดกล้อง" style={styles.cameraClose} onPress={() => setCameraOpen(false)}><Ionicons name="close" size={26} color="#fff" /></Pressable><View style={styles.cameraFilterPill}><Text style={styles.cameraFilterText}>{selectedFilter.label}</Text></View><Pressable accessibilityLabel="ถ่ายรูป" style={styles.shutter} onPress={() => void takePhoto()}><View style={styles.shutterInner} /></Pressable></View></CameraView></View>
       </Modal>
@@ -187,37 +195,42 @@ function FilterOverlay({ filter, rounded = false }: { filter: FilterKey; rounded
 }
 
 const styles = StyleSheet.create({
-  safeArea: { flex: 1, backgroundColor: '#101828' },
-  container: { padding: 20, gap: 16, paddingBottom: 28 },
-  header: { alignItems: 'center', flexDirection: 'row', justifyContent: 'space-between' },
+  safeArea: { flex: 1, backgroundColor: '#090B1A' },
+  container: { padding: 20, gap: 18, paddingBottom: 122 },
+  header: { alignItems: 'flex-start', flexDirection: 'row', justifyContent: 'space-between' },
   headerCopy: { flexShrink: 1 },
-  eyebrow: { color: '#84CAFF', fontSize: 14, fontWeight: '700', letterSpacing: 1 },
-  title: { color: '#fff', fontSize: 32, fontWeight: '800' },
-  roundButton: { alignItems: 'center', backgroundColor: '#fff', borderRadius: 22, height: 44, justifyContent: 'center', width: 44 },
-  previewPanel: { aspectRatio: 0.82, backgroundColor: '#1D2939', borderRadius: 14, overflow: 'hidden' },
+  eyebrow: { color: '#B9A7FF', fontSize: 11, fontWeight: '800', letterSpacing: 1.3 },
+  title: { color: '#fff', fontSize: 34, fontWeight: '800', letterSpacing: -1 },
+  roundButton: { alignItems: 'center', backgroundColor: '#6D4AFF', borderColor: '#B9A7FF', borderRadius: 18, borderWidth: 1, height: 48, justifyContent: 'center', width: 48 },
+  previewPanel: { aspectRatio: 0.82, backgroundColor: '#151A31', borderColor: '#293056', borderRadius: 24, borderWidth: 1, overflow: 'hidden' },
   previewImage: { height: '100%', width: '100%' },
   emptyState: { alignItems: 'center', flex: 1, justifyContent: 'center', padding: 28 },
   emptyTitle: { color: '#fff', fontSize: 21, fontWeight: '800', marginTop: 16, textAlign: 'center' },
   emptyText: { color: '#D0D5DD', fontSize: 15, lineHeight: 22, marginTop: 8, textAlign: 'center' },
-  previewBadge: { alignItems: 'center', backgroundColor: 'rgba(16,24,40,0.72)', borderRadius: 18, flexDirection: 'row', gap: 6, left: 14, paddingHorizontal: 12, paddingVertical: 8, position: 'absolute', top: 14 },
+  previewBadge: { alignItems: 'center', backgroundColor: 'rgba(109,74,255,0.9)', borderRadius: 18, flexDirection: 'row', gap: 6, left: 14, paddingHorizontal: 12, paddingVertical: 8, position: 'absolute', bottom: 14 },
   previewBadgeText: { color: '#fff', fontWeight: '700' },
-  sectionTitle: { color: '#fff', fontSize: 17, fontWeight: '800' },
+  sectionTitle: { color: '#fff', fontSize: 18, fontWeight: '800' },
   filterRow: { flexDirection: 'row', gap: 10 },
-  filterCard: { backgroundColor: '#1D2939', borderColor: '#344054', borderRadius: 12, borderWidth: 1, flex: 1, minWidth: 0, padding: 10 },
-  filterCardActive: { borderColor: '#84CAFF', borderWidth: 2 },
-  filterThumb: { backgroundColor: '#667085', borderRadius: 6, height: 42, marginBottom: 8, overflow: 'hidden' },
+  filterCard: { backgroundColor: '#151A31', borderColor: '#293056', borderRadius: 16, borderWidth: 1, flex: 1, minWidth: 0, padding: 10 },
+  filterCardActive: { backgroundColor: '#211B43', borderColor: '#A78BFA', borderWidth: 1.5 },
+  filterThumb: { backgroundColor: '#667085', borderRadius: 10, height: 52, marginBottom: 9, overflow: 'hidden' },
   filterLabel: { color: '#EAECF0', fontSize: 14, fontWeight: '800' },
-  filterLabelActive: { color: '#84CAFF' },
+  filterLabelActive: { color: '#D6CCFF' },
   filterDescription: { color: '#98A2B3', fontSize: 11, marginTop: 3 },
-  infoBox: { backgroundColor: '#182230', borderRadius: 12, padding: 14 },
+  infoBox: { backgroundColor: '#11162A', borderColor: '#293056', borderRadius: 16, borderWidth: 1, padding: 15 },
   infoText: { color: '#F2F4F7', fontSize: 14, fontWeight: '700' },
   metaText: { color: '#98A2B3', fontSize: 12, marginTop: 5 },
   actions: { alignItems: 'center', flexDirection: 'row', flexWrap: 'wrap', gap: 10 },
-  primaryButton: { alignItems: 'center', backgroundColor: '#1570EF', borderRadius: 10, flex: 1, flexDirection: 'row', gap: 8, justifyContent: 'center', minWidth: 140, paddingVertical: 14 },
+  primaryButton: { alignItems: 'center', backgroundColor: '#6D4AFF', borderRadius: 14, flex: 1, flexDirection: 'row', gap: 8, justifyContent: 'center', minWidth: 140, paddingVertical: 15 },
   primaryButtonText: { color: '#fff', fontSize: 15, fontWeight: '800' },
-  secondaryButton: { backgroundColor: '#fff', borderRadius: 10, paddingHorizontal: 14, paddingVertical: 14 },
-  secondaryButtonText: { color: '#101828', fontSize: 15, fontWeight: '800' },
-  removeButton: { alignItems: 'center', backgroundColor: '#FEF3F2', borderRadius: 10, height: 48, justifyContent: 'center', width: 48 },
+  secondaryButton: { backgroundColor: '#1A2140', borderColor: '#38416D', borderRadius: 14, borderWidth: 1, paddingHorizontal: 14, paddingVertical: 15 },
+  secondaryButtonText: { color: '#D6CCFF', fontSize: 15, fontWeight: '800' },
+  removeButton: { alignItems: 'center', backgroundColor: '#2A1828', borderColor: '#6B2737', borderRadius: 14, borderWidth: 1, height: 50, justifyContent: 'center', width: 50 },
+  bottomNav: { alignItems: 'center', backgroundColor: 'rgba(14,17,38,0.97)', borderColor: '#293056', borderTopWidth: 1, bottom: 0, flexDirection: 'row', justifyContent: 'space-around', left: 0, minHeight: 78, paddingHorizontal: 12, paddingTop: 8, position: 'absolute', right: 0 },
+  navItem: { alignItems: 'center', gap: 4, minWidth: 52 },
+  navLabel: { color: '#98A2B3', fontSize: 10, fontWeight: '700' },
+  navLabelActive: { color: '#B9A7FF', fontSize: 10, fontWeight: '800' },
+  navAddButton: { alignItems: 'center', backgroundColor: '#6D4AFF', borderColor: '#B9A7FF', borderRadius: 20, borderWidth: 2, height: 50, justifyContent: 'center', marginTop: -22, width: 50 },
   cameraScreen: { backgroundColor: '#000', flex: 1 }, camera: { flex: 1 },
   cameraControls: { flex: 1, justifyContent: 'space-between', padding: 22 },
   cameraClose: { alignItems: 'center', alignSelf: 'flex-start', backgroundColor: 'rgba(0,0,0,0.38)', borderRadius: 22, height: 44, justifyContent: 'center', width: 44 },

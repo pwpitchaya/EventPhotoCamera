@@ -17,8 +17,15 @@
       }
     },
     "android": {
-      "permissions": ["CAMERA", "READ_MEDIA_IMAGES", "READ_EXTERNAL_STORAGE"]
+      "permissions": [
+        "CAMERA",
+        "READ_MEDIA_IMAGES",
+        "READ_EXTERNAL_STORAGE"
+      ]
     },
-    "plugins": ["expo-font"]
+    "plugins": [
+      "expo-font",
+      "expo-asset"
+    ]
   }
 }
